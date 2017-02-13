@@ -1,2 +1,2 @@
-# Python_Problems
-Python problems to help develop problem solving skills
+# Python_Algorithms
+Python Algorithms to help develop problem solving skills
