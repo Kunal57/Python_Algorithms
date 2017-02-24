@@ -15,22 +15,30 @@ def largestPalindrome(n):
   :type n: int
   :rtype: int
   """
-  number1 = ""
-  number2 = ""
+  number = ""
   for x in range(n):
-    number1 += "9"
-    number2 += "9"
-  number1 = int(number1)
-  number2 = int(number2)
+    number += "9"
+  number = int(number)
   palindrome = 0
-  for x in range(number1 + 1):
-    for i in range(number2 + 1):
+  upper = number + 1
+  lower = 0
+  for x in range(upper, lower, -1):
+    for i in range(upper, lower, -1):
       product = x * i
-      if (str(product) == str(product)[::-1]) and product > palindrome:
+      if product < palindrome:
+        break
+      elif isPalindrome(product):
         palindrome = product
+        upper = x
+        lower = i
+        break
   return palindrome % 1337
 
+def isPalindrome(num):
+  """ Return True is number is Palindrome, else return False """
+  if str(num) == str(num)[::-1]:
+    return True
+  return False
 
-
-n = 2
+n = 5
 print(largestPalindrome(n))
