@@ -18,27 +18,32 @@ def largestPalindrome(n):
   number = ""
   for x in range(n):
     number += "9"
+  minNum = int(number[:-1])
   number = int(number)
   palindrome = 0
-  upper = number + 1
-  lower = 0
-  for x in range(upper, lower, -1):
-    for i in range(upper, lower, -1):
+  for x in range(number, minNum, -2):
+    if (x**2) < palindrome:
+      break
+    for i in range(number, x - 1, -2):
       product = x * i
-      if product < palindrome:
+      if product <= palindrome or product % 11 != 0:
         break
       elif isPalindrome(product):
         palindrome = product
-        upper = x
-        lower = i
+        print(palindrome, palindrome % 1337)
         break
-  return palindrome % 1337
+  return (palindrome, palindrome % 1337)
+
 
 def isPalindrome(num):
   """ Return True is number is Palindrome, else return False """
-  if str(num) == str(num)[::-1]:
+  numString = str(num)
+  if numString == numString[::-1]:
     return True
   return False
 
-n = 5
+n = 8
 print(largestPalindrome(n))
+
+# for i in range(upper, int((x*x)**.5), -2):
+# 990090099 152 99999 9901 99998 76865
