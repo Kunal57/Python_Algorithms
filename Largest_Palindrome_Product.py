@@ -10,6 +10,8 @@
 # Note:
 # The range of n is [1,8].
 
+from itertools import product
+
 def largestPalindrome(n):
   """
   :type n: int
@@ -18,32 +20,24 @@ def largestPalindrome(n):
   number = ""
   for x in range(n):
     number += "9"
-  minNum = int(number[:-1])
   number = int(number)
   palindrome = 0
-  for x in range(number, minNum, -2):
-    if (x**2) < palindrome:
+  for x in range(number, 1, -2):
+    if (x*x) < palindrome:
       break
     for i in range(number, x - 1, -2):
       product = x * i
-      if product <= palindrome or product % 11 != 0:
+      if product < palindrome:
         break
       elif isPalindrome(product):
         palindrome = product
-        print(palindrome, palindrome % 1337)
         break
-  return (palindrome, palindrome % 1337)
-
+  return palindrome % 1337
 
 def isPalindrome(num):
   """ Return True is number is Palindrome, else return False """
-  numString = str(num)
-  if numString == numString[::-1]:
-    return True
-  return False
+  return str(num) == str(num)[::-1]
 
-n = 8
+
+n = 7
 print(largestPalindrome(n))
-
-# for i in range(upper, int((x*x)**.5), -2):
-# 990090099 152 99999 9901 99998 76865
